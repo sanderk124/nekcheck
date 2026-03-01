@@ -41,6 +41,7 @@ export async function register(formData: FormData): Promise<void> {
   const { error: profileError } = await admin.from("profiles").insert({
     first_name: firstName as string,
     last_name: lastName as string,
+    email: email as string,
     user_id: data.user.id,
   });
 

@@ -44,7 +44,7 @@ export default function LoginPage() {
             <Input
               id="password"
               type="password"
-              placeholder="•••••��•"
+              placeholder="••••••"
               name="password"
               required
             />
