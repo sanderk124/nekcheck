@@ -1,7 +1,9 @@
-export default function QuestionnairesPage() {
+import QuestionnairesList from "@/components/questionnaires/QuestionnairesList";
+
+export default async function QuestionnairesPage() {
   return (
     <div>
-      <h1>Questionnaires</h1>
+     <QuestionnairesList />
     </div>
   );
 }

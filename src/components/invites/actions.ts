@@ -55,12 +55,11 @@ type Invite = {
     }
     const { data, error } = await supabase.from("patient_invites").select("id,link_id, created_at, valid_until, patient_name, used_at").eq("created_by", user.id);
   
-    console.log(user.id);
+
     if (error) {
       throw new Error(error.message);
     }
   
-    console.log(data);
     return data as Invite[];
 
 }
