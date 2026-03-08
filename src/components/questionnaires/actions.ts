@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { redirect } from "next/navigation";
 
 type Questionnaire = {
     id: string;
@@ -23,6 +24,23 @@ export async function getQuestionnaires() {
     if (error) {
         throw new Error(error.message);
     }
-    console.log(data);
     return data as Questionnaire[];
+}
+
+export async function createQuestionnaire(title: string, description: string) {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+        throw new Error("User not found");
+    }
+    const { data, error } = await supabase.from("questionnaires").insert({ title, description, created_by: user.id });
+    if (error) {
+        throw new Error(error.message);
+    }
+    
+    if (!data) {
+        throw new Error("Questionnaire not created");
+    }
+    
+    redirect(`/dashboard/questionnaires?success=questionnaire_created`);
 }
