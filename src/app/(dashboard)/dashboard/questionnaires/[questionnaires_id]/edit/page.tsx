@@ -4,10 +4,12 @@ import { redirect } from "next/navigation";
 
 type Question = {
     id: string;
-    position: number;
+    questionnaire_id: string;
+    position: number;   
     label: string;
     type: string;
     is_required: boolean;
+    is_active: boolean;
 }
 
 export default async function EditQuestionnairePage({ params }: { params: Promise<{ questionnaires_id: string }> }) {
@@ -15,7 +17,7 @@ export default async function EditQuestionnairePage({ params }: { params: Promis
     const supabase = await createClient();
     console.log("questionnaires_id: ", questionnaires_id);
 
-    const { data: questions, error: questionsError } = await supabase.from("questions").select("id, position, label, type, is_required").eq("questionnaire_id", questionnaires_id).eq("questionnaire_id", questionnaires_id);
+    const { data: questions, error: questionsError } = await supabase.from("questions").select("id, questionnaire_id, position, label, type, is_required, is_active").eq("questionnaire_id", questionnaires_id).eq("questionnaire_id", questionnaires_id);
 
     if (questionsError) {
         throw new Error(questionsError.message);
