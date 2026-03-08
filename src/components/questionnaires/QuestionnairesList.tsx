@@ -6,6 +6,7 @@ import { getQuestionnaires } from "./actions";
 import EditQuestionnaireButton from "./EditQuestionnaireButton";
 import PreviewQuestionnaireButton from "./PreviewQuestionnaireButton";
 import NewQuestionnaireButton from "./NewQuestionnaireButton";
+import DeleteQuestionnaireButton from "./DeleteQuestionnaireButton"
 
 export default async function QuestionnairesList() {
 
@@ -54,6 +55,7 @@ export default async function QuestionnairesList() {
                   <div className="flex gap-2">
                     <PreviewQuestionnaireButton questionnaireId={questionnaire.id} />
                     <EditQuestionnaireButton questionnaireId={questionnaire.id} />
+                    <DeleteQuestionnaireButton questionnaireId={questionnaire.id} />
                   </div>
                 </div>
               </CardHeader>
